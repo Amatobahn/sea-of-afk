@@ -17,7 +17,7 @@ class ApplicationWindow(QtGui.QMainWindow):
         super().__init__()
 
         self.setFixedSize(width, height)
-        self.setWindowTitle("Key Thief - [HERE]")
+        self.setWindowTitle("Sea of AFK - [HERE]")
         self.setWindowIcon(QtGui.QIcon(":src/sot_icon.png"))
         self.is_afk = False
         self.listening = True
@@ -51,14 +51,14 @@ class ApplicationWindow(QtGui.QMainWindow):
         try:
             if not afk:
                 self.is_afk = True
-                self.setWindowTitle("Key Thief - [AWAY]")
+                self.setWindowTitle("Sea of AFK - [AWAY]")
                 self.setStyleSheet("QPushButton{background-image: url(:src/sot_away.png);}")
                 print("afk")
                 t = Thread(target=self.move_pirate)
                 t.start()
             else:
                 print("not afk")
-                self.setWindowTitle("Key Thief - [HERE]")
+                self.setWindowTitle("Sea of AFK - [HERE]")
                 self.setStyleSheet("QPushButton{background-image: url(:src/sot_active.png);}")
                 self.is_afk = False
         except:

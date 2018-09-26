@@ -1,0 +1,3 @@
+QPushButton {
+    background-image: url(src/sot_active.png);
+}

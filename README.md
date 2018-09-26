@@ -1,4 +1,4 @@
-# sot_key_thief
+# Sea of AFK
 AFK controller for sea of thieves to prevent being kicked when you have to do stuff like:
  - Cook Food
  - Laundry

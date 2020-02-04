@@ -46,7 +46,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
                 self.afk(self.is_afk)
                 sleep(0.5)
 
-    def afk(self, afk: bool = False):
+    def afk(self, afk=False):
         try:
             if not afk:
                 self.is_afk = True

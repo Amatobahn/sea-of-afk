@@ -1,10 +1,10 @@
 import sys
-from gergcob.window_controller import WindowController
-from gergcob.keyboard_controller import Keyboard
+from utils.window_controller import WindowController
+from utils.keyboard_controller import Keyboard
 
 import keyboard as kb
 
-from PySideSimplify import *
+from PySide2 import QtWidgets, QtGui, QtCore
 
 from threading import Thread
 from time import sleep
@@ -12,7 +12,7 @@ from time import sleep
 import data
 
 
-class ApplicationWindow(QtGui.QMainWindow):
+class ApplicationWindow(QtWidgets.QMainWindow):
     def __init__(self, width, height):
         super().__init__()
 
@@ -28,17 +28,16 @@ class ApplicationWindow(QtGui.QMainWindow):
         self.setStyleSheet("QPushButton{background-image: url(:src/sot_active.png);}")
 
         # INTERFACE
-        self.btn_afk = QtGui.QPushButton("")
+        self.btn_afk = QtWidgets.QPushButton("")
         self.btn_afk.setFlat(True)
         self.btn_afk.clicked.connect(lambda: self.afk(self.is_afk))
         self.btn_afk.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.setCentralWidget(self.btn_afk)
 
-        l = Thread(target=self.hotkey_listener)
-        l.start()
+        thread = Thread(target=self.hotkey_listener)
+        thread.start()
 
         self.show()
-        self.focusWidget().clearFocus()
 
     def hotkey_listener(self):
         print('listening')
@@ -47,7 +46,7 @@ class ApplicationWindow(QtGui.QMainWindow):
                 self.afk(self.is_afk)
                 sleep(0.5)
 
-    def afk(self, afk: bool=False):
+    def afk(self, afk: bool = False):
         try:
             if not afk:
                 self.is_afk = True
@@ -87,6 +86,6 @@ class ApplicationWindow(QtGui.QMainWindow):
 
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     app_window = ApplicationWindow(300, 100)
     sys.exit(app.exec_())
